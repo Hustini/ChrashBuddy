@@ -1,6 +1,8 @@
 package com.example.chrashbuddy;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -10,8 +12,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class AlarmActivity extends AppCompatActivity {
+import java.util.Random;
 
+public class AlarmActivity extends AppCompatActivity {
+    int randomNum = 100 + (int)(Math.random() * 900);
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +28,9 @@ public class AlarmActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        var deactivationCodeLabel = (TextView)findViewById(R.id.deactivationCodeLabel);
+        deactivationCodeLabel.setText("Enter " + String.valueOf(randomNum) + " to deactivate");
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
