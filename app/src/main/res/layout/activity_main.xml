@@ -55,18 +55,35 @@
 
     <TextView
         android:id="@+id/activationButton"
-        android:layout_width="211dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="172dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="216dp"
         android:background="@drawable/custombutton"
+        android:fontFamily="serif"
         android:gravity="center"
         android:text="Activate Detection"
         android:textColor="#000000"
         android:textSize="18sp"
-        android:fontFamily="serif"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topBox" />
+
+    <TextView
+        android:id="@+id/triggerAlarmButton"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/alarmbutton"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="Manually trigger alert"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activationButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
