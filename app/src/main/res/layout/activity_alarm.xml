@@ -40,7 +40,6 @@
         android:layout_marginTop="10dp"
         android:background="@android:drawable/edit_text"
         android:hint="Enter code"
-        android:hintTextColor="#CCCCCC"
         android:inputType="number"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
