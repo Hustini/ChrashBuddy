@@ -9,16 +9,14 @@
 
     <ImageView
         android:id="@+id/topBox"
-        android:layout_width="412dp"
+        android:layout_width="0dp"
         android:layout_height="123dp"
         android:contentDescription="Box image"
+        android:scaleType="fitXY"
         android:src="@drawable/box"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/title"
@@ -28,21 +26,23 @@
         android:textSize="35sp"
         android:fontFamily="serif"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/topBox"
-        app:layout_constraintEnd_toEndOf="@+id/topBox"
-        app:layout_constraintStart_toStartOf="@+id/topBox"
-        app:layout_constraintTop_toTopOf="@+id/topBox" />
+        app:layout_constraintBottom_toBottomOf="@id/topBox"
+        app:layout_constraintStart_toStartOf="@id/topBox"
+        app:layout_constraintEnd_toEndOf="@id/topBox"
+        app:layout_constraintTop_toTopOf="@id/topBox" />
 
     <TextView
         android:id="@+id/detectionStatusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="serif"
         android:text="Detection status:"
         android:textSize="15sp"
-        android:fontFamily="serif"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topBox" />
+        app:layout_constraintTop_toBottomOf="@id/topBox" />
 
     <ImageView
         android:id="@+id/detectionStatusSymbol"
@@ -57,7 +57,7 @@
         android:id="@+id/activationButton"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="164dp"
         android:background="@drawable/custombutton"
         android:fontFamily="serif"
         android:gravity="center"
@@ -68,13 +68,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topBox" />
+        app:layout_constraintTop_toBottomOf="@id/detectionStatusText" />
 
     <TextView
         android:id="@+id/triggerAlarmButton"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginStart="80dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/alarmbutton"
         android:fontFamily="serif"
@@ -83,7 +82,8 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/activationButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activationButton" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
