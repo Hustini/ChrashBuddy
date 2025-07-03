@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <ImageView
+        android:id="@+id/topBox"
         android:layout_width="412dp"
         android:layout_height="123dp"
         android:contentDescription="Box image"
@@ -18,5 +19,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crash Buddy"
+        android:textSize="35sp"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/topBox"
+        app:layout_constraintEnd_toEndOf="@+id/topBox"
+        app:layout_constraintStart_toStartOf="@+id/topBox"
+        app:layout_constraintTop_toTopOf="@+id/topBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
