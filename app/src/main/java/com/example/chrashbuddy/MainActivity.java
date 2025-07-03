@@ -63,15 +63,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent event) {
                 float x = event.values[0];
-                float y = event.values[1];
                 float z = event.values[2];
 
-                Log.d("AccelData", String.format("X: %.3f, Y: %.3f, Z: %.3f", x, y, z));
+                if (x >= 10.0) {
+                    var intent = new Intent(MainActivity.this, AlarmActivity.class);
+                    startActivity(intent);
+                }
+                if (z >= 10.0) {
+                    var intent = new Intent(MainActivity.this, AlarmActivity.class);
+                    startActivity(intent);
+                }
             }
 
             @Override
-            public void onAccuracyChanged(Sensor sensor, int accuracy) {
-            }
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {}
         };
 
         var detectionStatusSymbol = (ImageView)findViewById(R.id.detectionStatusSymbol);
