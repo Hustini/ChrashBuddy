@@ -2,21 +2,17 @@ package com.example.chrashbuddy;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
                     drawable.setColor(Color.GREEN);
                     currentColor[0] = Color.GREEN;
                     activationToggleButton.setText("Deactivate detection");
+
+                    var test = CrashBuddyService.detectAccident();
+                    activationToggleButton.setText(test);
                 } else {
                     drawable.setColor(Color.RED);
                     currentColor[0] = Color.RED;
