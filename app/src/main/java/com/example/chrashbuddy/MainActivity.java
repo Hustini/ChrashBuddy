@@ -68,10 +68,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void resetApp() {
+        var detectionStatusSymbol = (ImageView)findViewById(R.id.detectionStatusSymbol);
+        GradientDrawable drawable = (GradientDrawable) detectionStatusSymbol.getDrawable();
+        drawable.setColor(Color.RED);
+
+        var activationToggleButton = (TextView)findViewById(R.id.activationToggleButton);
+        activationToggleButton.setText("Activate Detection");
+
+        crashDetector.stopDetection();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        crashDetector.stopDetection();
+        resetApp();
     }
 
     @Override
