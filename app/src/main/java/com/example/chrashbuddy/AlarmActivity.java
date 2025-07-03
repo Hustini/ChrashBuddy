@@ -1,7 +1,12 @@
 package com.example.chrashbuddy;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +36,21 @@ public class AlarmActivity extends AppCompatActivity {
 
         var deactivationCodeLabel = (TextView)findViewById(R.id.deactivationCodeLabel);
         deactivationCodeLabel.setText("Enter " + String.valueOf(randomNum) + " to deactivate");
+
+        var deactivateButton = (TextView)findViewById(R.id.deactivateButton);
+        deactivateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                var deactivationCodeInputField = (EditText)findViewById(R.id.deactivationCodeInput);
+                var deactivationCodeInputStr = deactivationCodeInputField.getText().toString();
+                var deactivationCodeInputInt = Integer.parseInt(deactivationCodeInputStr);
+                if (deactivationCodeInputInt == randomNum) {
+                    var intent = new Intent(AlarmActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
