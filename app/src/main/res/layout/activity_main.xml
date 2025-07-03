@@ -54,7 +54,7 @@
         app:srcCompat="@drawable/circle" />
 
     <TextView
-        android:id="@+id/activationButton"
+        android:id="@+id/activationToggleButton"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="164dp"
@@ -82,7 +82,7 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/activationButton"
+        app:layout_constraintTop_toBottomOf="@id/activationToggleButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
