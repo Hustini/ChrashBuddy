@@ -3,10 +3,16 @@ package com.example.chrashbuddy;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -15,6 +21,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 
 public class MainActivity extends AppCompatActivity {
+    private SensorManager sensorManager;
+    private Sensor accelerometerSensor;
+    private SensorEventListener accelerometerEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +45,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        if (sensorManager == null) {
+            Toast.makeText(this, "Sensor service not available", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        if (accelerometerSensor == null) {
+            Toast.makeText(this, "No Gyroscope", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        accelerometerEventListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                float x = event.values[0];
+                float y = event.values[1];
+                float z = event.values[2];
+
+                Log.d("AccelData", String.format("X: %.3f, Y: %.3f, Z: %.3f", x, y, z));
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        };
+
         var detectionStatusSymbol = (ImageView)findViewById(R.id.detectionStatusSymbol);
         final int[] currentColor = {Color.RED};
         var activationToggleButton = (TextView)findViewById(R.id.activationToggleButton);
@@ -47,9 +85,6 @@ public class MainActivity extends AppCompatActivity {
                     drawable.setColor(Color.GREEN);
                     currentColor[0] = Color.GREEN;
                     activationToggleButton.setText("Deactivate detection");
-
-                    var test = CrashBuddyService.detectAccident();
-                    activationToggleButton.setText(test);
                 } else {
                     drawable.setColor(Color.RED);
                     currentColor[0] = Color.RED;
@@ -57,5 +92,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (sensorManager != null && accelerometerSensor != null) {
+            sensorManager.registerListener(accelerometerEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (sensorManager != null) {
+            sensorManager.unregisterListener(accelerometerEventListener);
+        }
     }
 }
