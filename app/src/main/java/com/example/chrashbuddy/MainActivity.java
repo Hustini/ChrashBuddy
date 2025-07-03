@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        crashDetector = new CrashBuddyService(this);
+        crashDetector = new CrashBuddyService(MainActivity.this);
 
         if (!crashDetector.isSensorAvailable()) {
             Toast.makeText(this, "Accelerometer not available", Toast.LENGTH_SHORT).show();

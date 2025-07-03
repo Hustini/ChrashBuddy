@@ -1,6 +1,7 @@
 package com.example.chrashbuddy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -34,6 +35,9 @@ public class CrashBuddyService {
 
                 if (Math.abs(x) > 20 || Math.abs(z) > 20) {
                     Log.d("CrashDetection", "Potential accident detected!");
+                    Intent intent = new Intent(context, AlarmActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
                 }
             }
 
