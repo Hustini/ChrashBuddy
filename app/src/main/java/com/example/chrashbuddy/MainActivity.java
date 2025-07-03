@@ -1,6 +1,10 @@
 package com.example.chrashbuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        var triggerAlarmButton = (TextView)findViewById(R.id.triggerAlarmButton);
+        triggerAlarmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                var intent = new Intent(MainActivity.this, AlarmActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }
