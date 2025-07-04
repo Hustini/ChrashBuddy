@@ -2,6 +2,8 @@ package com.example.chrashbuddy;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.Handler;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,6 +23,7 @@ import java.util.Random;
 
 public class AlarmActivity extends AppCompatActivity {
     int randomNum = 100 + (int)(Math.random() * 900);
+    MediaPlayer mediaPlayer;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -33,6 +36,10 @@ public class AlarmActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.alarm);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
         var deactivationCodeLabel = (TextView)findViewById(R.id.deactivationCodeLabel);
         deactivationCodeLabel.setText("Enter " + String.valueOf(randomNum) + " to deactivate");
@@ -58,5 +65,19 @@ public class AlarmActivity extends AppCompatActivity {
                 Toast.makeText(AlarmActivity.this, "Deactivate alarm", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void stopAlarmSound() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopAlarmSound();
     }
 }
