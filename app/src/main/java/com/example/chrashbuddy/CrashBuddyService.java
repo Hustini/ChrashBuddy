@@ -34,7 +34,7 @@ public class CrashBuddyService {
                 float y = event.values[1];
                 float z = event.values[2];
 
-                if (Math.abs(x) > 20 || Math.abs(y) > 20 || Math.abs(z) > 20) {
+                if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
                     Log.d("CrashDetection", "Potential accident detected!");
                     stopDetection();
                     Intent intent = new Intent(context, AlarmActivity.class);
