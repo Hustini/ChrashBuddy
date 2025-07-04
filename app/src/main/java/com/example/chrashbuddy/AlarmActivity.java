@@ -68,16 +68,29 @@ public class AlarmActivity extends AppCompatActivity {
     }
 
     private void stopAlarmSound() {
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
-            mediaPlayer = null;
+        if (mediaPlayer != null) {
+            try {
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                }
+                mediaPlayer.release();
+            } catch (Exception e) {
+                Log.e("AlarmActivity", "Error stopping media player", e);
+            } finally {
+                mediaPlayer = null;
+            }
         }
     }
 
     @Override
     protected void onDestroy() {
+        stopAlarmSound();
         super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
         stopAlarmSound();
     }
 }
