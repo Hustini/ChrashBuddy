@@ -31,9 +31,10 @@ public class CrashBuddyService {
             @Override
             public void onSensorChanged(SensorEvent event) {
                 float x = event.values[0];
+                float y = event.values[1];
                 float z = event.values[2];
 
-                if (Math.abs(x) > 5 || Math.abs(z) > 5) {
+                if (Math.abs(x) > 10 || Math.abs(y) > 10 || Math.abs(z) > 10) {
                     Log.d("CrashDetection", "Potential accident detected!");
                     stopDetection();
                     Intent intent = new Intent(context, AlarmActivity.class);
