@@ -55,6 +55,8 @@ public class AlarmActivity extends AppCompatActivity {
                     var intent = new Intent(AlarmActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
+                } else {
+                    Toast.makeText(AlarmActivity.this, "Wrong code", Toast.LENGTH_SHORT).show();
                 }
             }
         });
